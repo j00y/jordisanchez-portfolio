@@ -54,7 +54,7 @@ const App = () => {
               <Route path={Routes.WORK} component={Work} />
               <Route path={Routes.SKILLS} component={Skills} />
               <Route path={Routes.NOT_FOUND} component={NotFound} />
-              <Route component={NotFound} />
+              {/* <Route component={NotFound} /> */}
             </Switch>
             <Footer />
           </div>
