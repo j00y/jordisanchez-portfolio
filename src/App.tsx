@@ -34,6 +34,13 @@ const App = () => {
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--colorMode",
+      darkMode ? "black" : "white"
+    );
+  }, [darkMode]);
+
   return (
     <AppContext.Provider value={{ darkMode, setDarkMode }}>
       <Router>

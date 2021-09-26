@@ -24,6 +24,10 @@
 .secondary-color{
   color: #13ff9d;
 }
+body{
+  background-color: var(--colorMode);
+  transition: background-color .2s ease-in-out
+}
 
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
