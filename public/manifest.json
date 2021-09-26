@@ -1,21 +1,7 @@
 {
   "short_name": "JS Dev",
   "name": "Jordi Sanchez Portfolio",
-  "icons": [{
-      "src": "favicon.ico",
-      "sizes": "256x256 64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "Icon-196.png",
-      "type": "image/png",
-      "sizes": "196x196"
-    },
-    {
-      "src": "Icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
+  "icons": [
     {
       "src": "\/android-icon-36x36.png",
       "sizes": "36x36",
