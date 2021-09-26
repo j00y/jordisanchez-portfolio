@@ -28,6 +28,10 @@ const App = () => {
       baseUrl: "https://picsum.photos",
     };
     initialize(apiOtions);
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }, []);
 
   return (
@@ -38,7 +42,7 @@ const App = () => {
             <Header />
             <Switch>
               <Route exact path={Routes.HOME} component={Home} />
-              <Route exact path='/' component={Home} />
+              <Route exact path="/" component={Home} />
               <Route path={Routes.ABOUT} component={About} />
               <Route path={Routes.WORK} component={Work} />
               <Route path={Routes.SKILLS} component={Skills} />
