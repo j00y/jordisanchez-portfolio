@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-function App() {
+import { Header } from "./components/Header";
+import { Home, NotFound, About, Work, Skills } from "./Pages";
+import { Footer } from "./components/Footer";
+import { useEffect, useState } from "react";
+import { ApiOptions, initialize } from "./api/base";
+import { AppContext } from "./AppContext";
+import { MuiThemeProvider } from "@material-ui/core";
+import { theme } from "./theme/theme";
+import { isLightMode, modeHasBeenSet } from "./utils/theme";
+import { Routes } from "./routes/routes";
+
+const App = () => {
+  const getInitialThemeMode = () => {
+    if (!modeHasBeenSet()) {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    return !isLightMode();
+  };
+
+  const [darkMode, setDarkMode] = useState(getInitialThemeMode());
+
+  useEffect(() => {
+    const apiOtions: ApiOptions = {
+      baseUrl: "https://picsum.photos",
+    };
+    initialize(apiOtions);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={{ darkMode, setDarkMode }}>
+      <Router>
+        <MuiThemeProvider theme={theme({ darkMode })}>
+          <div className={`app-wrapper ${darkMode && "app-wrapper-dark-mode"}`}>
+            <Header />
+            <Switch>
+              <Route exact path={Routes.HOME} component={Home} />
+              <Route exact path='/' component={Home} />
+              <Route path={Routes.ABOUT} component={About} />
+              <Route path={Routes.WORK} component={Work} />
+              <Route path={Routes.SKILLS} component={Skills} />
+              <Route path={Routes.NOT_FOUND} component={NotFound} />
+              <Route component={NotFound} />
+            </Switch>
+            <Footer />
+          </div>
+        </MuiThemeProvider>
+      </Router>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;

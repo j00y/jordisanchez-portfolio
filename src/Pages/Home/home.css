@@ -1,0 +1,29 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 500px;
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.background {
+  transition: filter 0.5s ease-in-out;
+  position: absolute;
+  right: 0;
+  width: 400px;
+  filter: grayscale(1);
+  opacity: 0.5;
+  top: 25vh;
+}
+.background-dark {
+  filter: invert() grayscale(1) ;
+}
