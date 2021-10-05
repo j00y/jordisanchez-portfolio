@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MobileToggle = styled.div`
   width: 100vw;
   font-size: 12px;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   display: flex;
   justify-content: center;

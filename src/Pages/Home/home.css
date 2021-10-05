@@ -5,14 +5,30 @@
   flex: 1;
   justify-content: center;
   width: 100%;
-  padding: 20px;
   box-sizing: border-box;
-  max-width: 500px;
+  min-height: calc(100vh);
+  min-height: calc(var(--vh, 1vh) * 100);
+  padding: 5rem;
+}
+@media (max-width: 768px) {
+  .home-container {
+    padding: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .home-container {
+    padding: 2rem;
+  }
 }
 .home-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.home {
+  max-width: 70rem;
   width: 100%;
 }
 .background {
@@ -25,5 +41,5 @@
   top: 25vh;
 }
 .background-dark {
-  filter: invert() grayscale(1) ;
+  filter: invert() grayscale(1);
 }

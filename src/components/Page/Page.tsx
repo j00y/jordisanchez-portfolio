@@ -1,32 +1,24 @@
-import { useHistory } from "react-router";
-import { ColorPalette } from "../../theme/theme";
-import { MagicLabel } from "../MagicLabel";
+import { Divider } from "@material-ui/core";import { useEffect } from "react";
+import { useAppState } from "../../AppContext";
 import { PageProps } from "./PageProps";
-import { PageContainer } from "./styles";
+import { PageChildren, PageContainer, PageTitle, PageWrapper } from "./styles";
 
 export const Page = (props: PageProps) => {
-  const { children, title } = props;
-  const history = useHistory();
+  const { children, title, noPadding, backgroundColor } = props;
+  const { setForceMenu } = useAppState();
 
-  const handleReturn = () => {
-    history.goBack();
-  };
+  useEffect(() => {
+    setForceMenu(false);
+  }, []);
+
   return (
-    <PageContainer>
-      <>
-        {title && (
-          <MagicLabel
-            label={title}
-            labelColor={ColorPalette.primary}
-            magicWord="Back"
-            size="small"
-            animation={false}
-            onClick={handleReturn}
-          />
-        )}
-        {title && <div></div>}
-        {children}
-      </>
-    </PageContainer>
+    <PageWrapper backgroundColor={backgroundColor}>
+      <PageContainer noPadding={noPadding}>
+        <>
+          {title && <PageTitle>{title}</PageTitle>}
+          <PageChildren>{children}</PageChildren>
+        </>
+      </PageContainer>
+    </PageWrapper>
   );
 };

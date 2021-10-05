@@ -6,12 +6,13 @@ import { Header } from "./components/Header";
 import { Home, NotFound, About, Work, Skills } from "./Pages";
 import { Footer } from "./components/Footer";
 import { useEffect, useState } from "react";
-import { ApiOptions, initialize } from "./api/base";
+// import { ApiOptions, initialize } from "./api/base";
 import { AppContext } from "./AppContext";
 import { MuiThemeProvider } from "@material-ui/core";
 import { theme } from "./theme/theme";
 import { isLightMode, modeHasBeenSet } from "./utils/theme";
 import { Routes } from "./routes/routes";
+import { useWindowSize } from "./hooks";
 
 const App = () => {
   const getInitialThemeMode = () => {
@@ -20,19 +21,25 @@ const App = () => {
     }
     return !isLightMode();
   };
-
+  const size = useWindowSize();
+  const [forceMenu, setForceMenu] = useState(false);
   const [darkMode, setDarkMode] = useState(getInitialThemeMode());
 
+  // useEffect(() => {
+  //   const apiOtions: ApiOptions = {
+  //     baseUrl: "https://picsum.photos",
+  //   };
+  //   initialize(apiOtions);
+  // }, []);
+
   useEffect(() => {
-    const apiOtions: ApiOptions = {
-      baseUrl: "https://picsum.photos",
-    };
-    initialize(apiOtions);
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }, []);
+    if (size.height) {
+      // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+      let vh = window.innerHeight * 0.01;
+      // Then we set the value in the --vh custom property to the root of the document
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    }
+  }, [size.height]);
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -42,7 +49,7 @@ const App = () => {
   }, [darkMode]);
 
   return (
-    <AppContext.Provider value={{ darkMode, setDarkMode }}>
+    <AppContext.Provider value={{ darkMode, setDarkMode, forceMenu, setForceMenu }}>
       <Router>
         <MuiThemeProvider theme={theme({ darkMode })}>
           <div className={`app-wrapper ${darkMode && "app-wrapper-dark-mode"}`}>

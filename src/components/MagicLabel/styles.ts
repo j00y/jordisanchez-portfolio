@@ -18,15 +18,15 @@ interface AnimatedProps {
 }
 
 export const Word = styled.div`
-  font-size: ${(props: WordProps) => (props.size === "small" ? 4 : 7)}rem;
-  line-height: ${(props: WordProps) => (props.size === "small" ? 3 : 6)}rem;
+  font-size: ${(props: WordProps) => (props.size === "small" ? 4 : 10)}rem;
+  line-height: ${(props: WordProps) => (props.size === "small" ? 3 : 8)}rem;
+  letter-spacing: ${(props: WordProps) =>
+    props.size === "small" ? -0.2 : -0.4}rem;
   font-weight: 700;
   transition: transform 0.1s ease-in-out;
   cursor: ${(props: WordProps) => (props.clickable ? "pointer" : "auto")};
-  letter-spacing: ${(props: WordProps) =>
-    props.size === "small" ? -0.2 : -0.4}rem;
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
   width: fit-content;
   padding-right: 7rem;
   color: ${(props: WordProps) => (props.color ? props.color : "inherit")};
@@ -38,14 +38,14 @@ export const Word = styled.div`
     `transform ${props.magicAnimation ? 0.3 : 0.1}s ease-in-out`};
 
   @media (max-width: 768px) {
-    font-size: ${(props: WordProps) => (props.size === "small" ? 3 : 5)}rem;
-    line-height: ${(props: WordProps) => (props.size === "small" ? 3 : 4)}rem;
+    font-size: ${(props: WordProps) => (props.size === "small" ? 3 : 7)}rem;
+    line-height: ${(props: WordProps) => (props.size === "small" ? 3 : 6)}rem;
     letter-spacing: ${(props: WordProps) =>
       props.size === "small" ? -0.2 : -0.3}rem;
   }
   @media (max-width: 480px) {
-    font-size: ${(props: WordProps) => (props.size === "small" ? 2 : 4)}rem;
-    line-height: ${(props: WordProps) => (props.size === "small" ? 2 : 3)}rem;
+    font-size: ${(props: WordProps) => (props.size === "small" ? 2 : 5)}rem;
+    line-height: ${(props: WordProps) => (props.size === "small" ? 2 : 4)}rem;
     letter-spacing: ${(props: WordProps) =>
       props.size === "small" ? -0.1 : -0.25}rem;
   }
@@ -53,16 +53,16 @@ export const Word = styled.div`
 
 export const Animated = styled.div`
   transform: ${(props: AnimatedProps) =>
-    props.enterAnimation === false ? "translateY(0rem)" : `translateY(8rem)`};
+    props.enterAnimation === false ? "translateY(0rem)" : `translateY(10rem)`};
   animation: ${(props: AnimatedProps) =>
     props.enterAnimation === false
       ? "none"
-      : `appearing 0.5s ease-in-out forwards`};
+      : `appearing .6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards`};
   animation-delay: ${(props: AnimatedProps) =>
     props.animationDelay ? props.animationDelay : 0}s;
   @keyframes appearing {
     from {
-      transform: translateY(8rem);
+      transform: translateY(10rem);
     }
     to {
       transform: translateY(0);

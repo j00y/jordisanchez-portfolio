@@ -6,29 +6,36 @@
   flex: 1;
   flex-direction: column;
   font-family: Open Sans;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   transition-property: color, background;
-  color:black;
-  background-color: white;
+  color:#190F14 ;
+  background-color: #f5f5f5;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
 }
-.app-wrapper-dark-mode{
-  color:white;
-  background-color: black;
+.app-wrapper-dark-mode {
+  color: #f5f5f5;
+  background-color: #190F14;
 }
-.primary-color{
+.primary-color {
   color: #7510f7;
 }
 
-.secondary-color{
+.secondary-color {
   color: #13ff9d;
 }
-body{
+body {
   background-color: var(--colorMode);
-  transition: background-color .2s ease-in-out
+  transition: background-color 0.2s ease-in-out;
 }
 
 * {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
 }

@@ -4,6 +4,8 @@ import { createContext, useContext } from "react";
 export interface AppState {
     darkMode: boolean;
     setDarkMode: (darkMode: boolean) => void
+    forceMenu: boolean;
+    setForceMenu: (forceMenu: boolean) => void
 }
 
 export const AppContext = createContext<AppState>({} as any);
