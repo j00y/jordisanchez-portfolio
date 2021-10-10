@@ -8,7 +8,7 @@ export const Work = () => {
 
   return (
     <Page
-      title="Work."
+      title="Work"
       backgroundColor={
         theme.palette.type === "light"
           ? Colors.lightFluorGreen
@@ -16,8 +16,6 @@ export const Work = () => {
       }
     >
       <WorkContainer>
-        <div>This is gonna be Works content</div>
-        <div>This is gonna be Works content</div>
         <div>This is gonna be Works content</div>
       </WorkContainer>
     </Page>

@@ -44,7 +44,7 @@ const App = () => {
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--colorMode",
-      darkMode ? "black" : "white"
+      darkMode ? "#190F14" : "#f5f5f5"
     );
   }, [darkMode]);
 

@@ -1,16 +1,15 @@
+import { Theme } from "@material-ui/core";
+
 export type ClassMap = { [value: string]: boolean };
 export const getClassNames = (classMap: ClassMap): string =>
   Object.keys(classMap)
     .filter((styleClass) => classMap[styleClass])
     .join(" ");
 
+export const getThemeColor = (theme: Theme) =>{
+  return theme.palette.type === 'light' ? "#190F14" : '#f5f5f5';
+}
 
-// animation: fadeIn 2s ease-in-out alternate-reverse infinite;
-// @keyframes fadeIn {
-//     0% { opacity: 0 }
-//     20% { opacity: 1 }
-//     80% { opacity: 1 }
-//     100% { opacity: 0 } 
-// }
-
-// background-image: ${props => `url(${props.src})`};
+export const getThemeBackgroundColor = (theme: Theme) =>{
+  return theme.palette.type === 'light' ?  theme.palette.primary.light : "#190F14";
+}

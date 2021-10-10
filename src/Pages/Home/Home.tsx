@@ -2,25 +2,34 @@ import { MagicLabel } from "../../components/MagicLabel";
 import { Page } from "../../components/Page";
 import "./home.css";
 import { MobileToggle } from "./styles";
-import { useState } from "react";
 import { useHistory } from "react-router";
 import { Routes } from "../../routes/routes";
-import { ColorPalette } from "../../theme/theme";
 import { useAppState } from "../../AppContext";
 import { About, Skills, Work } from "..";
+import { useTheme } from "@material-ui/core";
+import { Element, scroller } from "react-scroll";
 
 export const Home = () => {
   const { forceMenu, setForceMenu } = useAppState();
-  const history = useHistory();
+  const theme = useTheme();
   const toogleForceMenu = () => {
     if (document.body.offsetWidth < 768) {
       setForceMenu(!forceMenu);
     }
   };
 
-  const handleRedirectTo = (path: string) => {
-    history.push(path);
+  const handleScrollTo = (path: string) => {
+    const scrollType = {
+      duration: 500,
+      smooth: true, // linear “easeInQuint” “easeOutCubic”
+    };
+    scroller.scrollTo(path, scrollType);
   };
+
+  const getMagicColor =
+    theme.palette.type === "light"
+      ? theme.palette.secondary.light
+      : theme.palette.primary.main;
   return (
     <Page noPadding={true}>
       <div className="home-container" onClick={toogleForceMenu}>
@@ -28,25 +37,25 @@ export const Home = () => {
           <MagicLabel
             label="Hi."
             magicWord="About"
-            magicWordColor={ColorPalette.primary}
+            magicWordColor={getMagicColor}
             opacityLabel={true}
-            onClick={() => handleRedirectTo(Routes.ABOUT)}
+            onClick={() => handleScrollTo(Routes.ABOUT)}
             showMagicWord={forceMenu}
           />
           <MagicLabel
             label="I'm"
             magicWord="Skills"
-            magicWordColor={ColorPalette.primary}
+            magicWordColor={getMagicColor}
             opacityLabel={true}
-            onClick={() => handleRedirectTo(Routes.SKILLS)}
+            onClick={() => handleScrollTo(Routes.SKILLS)}
             showMagicWord={forceMenu}
             animationDelay={0.4}
           />
           <MagicLabel
             label="Jordi"
             magicWord="Work"
-            magicWordColor={ColorPalette.primary}
-            onClick={() => handleRedirectTo(Routes.WORK)}
+            magicWordColor={getMagicColor}
+            onClick={() => handleScrollTo(Routes.WORK)}
             padding="0 7rem 2rem 0"
             showMagicWord={forceMenu}
             animationDelay={0.8}
@@ -54,9 +63,15 @@ export const Home = () => {
         </div>
         <MobileToggle>Tap anywhere</MobileToggle>
       </div>
-      <About />
-      <Skills />
-      <Work />
+      <Element name={Routes.ABOUT}>
+        <About />
+      </Element>
+      <Element name={Routes.SKILLS}>
+        <Skills />
+      </Element>
+      <Element name={Routes.WORK}>
+        <Work />
+      </Element>
     </Page>
   );
 };

@@ -26,6 +26,8 @@ export const Colors: any = {
   mediumGray: '#494949',
   darkGrey: '#242221',
   darkerGrey: '#1b1b1b',
+  progressSecondaryGreen: '#6de7b4',
+  progressSecondaryBackground: '#d3efe3',
   doveGrey: '#666',
   white: '#ffffff',
   black: '#0f0f0f',
@@ -52,7 +54,9 @@ export const ColorPalette: Palette = {
 
   /* Base Colors */
   primary: Colors.purple,
-  secondary: Colors.lightFluorGreen,
+  // secondary: Colors.lightFluorGreen,
+  secondary: Colors.fluorGreen,
+
 
   /* Warning Colors */
   error: Colors.lightRed,

@@ -28,7 +28,6 @@ export const Word = styled.div`
   display: flex;
   overflow-x: hidden;
   width: fit-content;
-  padding-right: 7rem;
   color: ${(props: WordProps) => (props.color ? props.color : "inherit")};
   opacity: ${(props: WordProps) => (props.opacityLabel ? 0.5 : 1)};
   transform: ${(props: WordProps) =>
